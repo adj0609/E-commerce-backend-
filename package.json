@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "npm run seed",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seeds/index.js"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adj0609/E-commerce-backend-.git"

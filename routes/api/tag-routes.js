@@ -12,13 +12,15 @@ router.get('/', async (req, res) => {
     attributes: ["id", "tag_name"],
     include: [{
       model: Product,
-      attributes: ["id", "product_name", "price", "stock", "category_id"],
-      through: "ProductTag",
+      //attributes: ["id", "product_name", "price", "stock", "category_id"],
+      through: ProductTag,
     },
   ],
   })
   .then((parsedTagData) => {
-    res.json(err);
+    res.status(200).json(parsedTagData);
+  })
+  .catch((err) => { res.status(500).json(err); 
   });
   // find all tags
   // be sure to include its associated Product data
@@ -44,9 +46,9 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
-  Tag.create({
-    tag_name: req.body.tag_name,
-  })
+  Tag.create(
+   req.body,
+  )
   .then((tag) => {
     res.json(tag);
   })
